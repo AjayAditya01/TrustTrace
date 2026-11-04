@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#071426" />
+    <title>Login risk details · TrustTrace</title>
+    <link rel="icon" href="assets/brand-mark.jpg" type="image/svg+xml" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body data-page="details">
+    <div class="app-layout">
+      <aside class="sidebar" id="sidebar"></aside>
+      <div class="app-main">
+        <header class="topbar" id="topbar"></header>
+        <main class="content">
+          <div class="demo-notice">
+            <i class="bi bi-info-circle"></i
+            ><span
+              >This risk score and all detected factors are illustrative.
+              TrustTrace is not evaluating a real login.</span
+            >
+          </div>
+          <div class="page-heading">
+            <div>
+              <a href="login-activities.html" class="table-action"
+                ><i class="bi bi-arrow-left"></i> Login activities</a
+              >
+              <h1 style="margin-top: 10px">Login risk details</h1>
+              <p>Review the context behind a simulated sign-in signal.</p>
+            </div>
+            <div class="heading-actions">
+              <button class="btn btn-secondary" data-detail-action="review">
+                <i class="bi bi-check2-circle"></i> Mark reviewed</button
+              ><button class="btn btn-danger" data-detail-action="block">
+                <i class="bi bi-slash-circle"></i> Block IP (demo)
+              </button>
+            </div>
+          </div>
+          <section class="card risk-summary">
+            <div class="score-ring" id="detailScoreRing">
+              <div class="score-ring-content">
+                <strong id="detailScore">94</strong><span>Risk score</span>
+              </div>
+            </div>
+            <div class="risk-summary-copy">
+              <span class="severity-pill severity-high" id="detailRiskPill"
+                >High risk</span
+              >
+              <h2
+                id="detailTitle"
+                style="font-size: 1.45rem; margin: 10px 0 5px"
+              >
+                Impossible travel detected
+              </h2>
+              <p
+                class="muted small"
+                id="detailSubtitle"
+                style="margin: 0 0 15px"
+              >
+                A simulated location change triggered this event for Ethan
+                Brooks.
+              </p>
+              <div class="heading-actions">
+                <span class="role-pill" id="detailEventId">LG-2047</span
+                ><span class="role-pill" id="detailEventTime">Today</span>
+              </div>
+            </div>
+          </section>
+          <div class="risk-layout" style="margin-top: 17px">
+            <section class="card section-card">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Why this login was flagged</h2>
+                  <p>Example signals contributing to the demo score</p>
+                </div>
+                <i class="bi bi-shield-exclamation text-red"></i>
+              </div>
+              <div id="riskFactors">
+                <div class="risk-factor">
+                  <span class="factor-icon"><i class="bi bi-globe2"></i></span>
+                  <div>
+                    <strong>Unusual location for this account</strong
+                    ><small
+                      >The location differs from the recent example sign-in
+                      pattern.</small
+                    >
+                  </div>
+                </div>
+                <div class="risk-factor">
+                  <span class="factor-icon"
+                    ><i class="bi bi-clock-history"></i
+                  ></span>
+                  <div>
+                    <strong>Impossible travel window</strong
+                    ><small
+                      >Two distant locations appear less than 18 minutes apart
+                      in the mock data.</small
+                    >
+                  </div>
+                </div>
+                <div class="risk-factor">
+                  <span class="factor-icon"
+                    ><i class="bi bi-fingerprint"></i
+                  ></span>
+                  <div>
+                    <strong>New device fingerprint</strong
+                    ><small
+                      >This example device has not appeared in the account’s
+                      demo history.</small
+                    >
+                  </div>
+                </div>
+              </div>
+              <div class="settings-note" style="margin-top: 15px">
+                <i class="bi bi-lightbulb"></i>Recommended response: verify the
+                account owner through your normal process before taking action.
+              </div>
+            </section>
+            <section class="card section-card">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Event context</h2>
+                  <p>Details from the mock activity record</p>
+                </div>
+              </div>
+              <div class="timeline" id="detailContext">
+                <div class="timeline-item">
+                  <span class="timeline-dot"><i class="bi bi-person"></i></span>
+                  <div>
+                    <strong id="detailUser">Ethan Brooks</strong
+                    ><small id="detailEmail">ethan.brooks@northstar.io</small>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <span class="timeline-dot"
+                    ><i class="bi bi-geo-alt"></i
+                  ></span>
+                  <div>
+                    <strong id="detailLocation">Singapore, SG</strong
+                    ><small id="detailIp">103.84.12.206</small>
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <span class="timeline-dot"><i class="bi bi-laptop"></i></span>
+                  <div>
+                    <strong id="detailDevice">Safari · iPhone</strong
+                    ><small
+                      >Browser and device reported by the mock record</small
+                    >
+                  </div>
+                </div>
+                <div class="timeline-item">
+                  <span class="timeline-dot"
+                    ><i class="bi bi-shield-check"></i
+                  ></span>
+                  <div>
+                    <strong id="detailStatus">Blocked in demo</strong
+                    ><small>Outcome shown for illustration only</small>
+                  </div>
+                </div>
+              </div>
+              <a
+                id="relatedAlertLink"
+                class="btn btn-secondary"
+                href="fraud-alerts.html"
+                style="width: 100%; margin-top: 8px"
+                ><i class="bi bi-arrow-up-right"></i> View related alert</a
+              >
+            </section>
+          </div>
+        </main>
+      </div>
+    </div>
+    <script src="js/data.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/dashboard.js" defer></script>
+  </body>
+</html>

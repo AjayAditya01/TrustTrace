@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#071426" />
+    <title>Overview · TrustTrace</title>
+    <link rel="icon" href="assets/brand-mark.jpg" type="image/svg+xml" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+      rel="stylesheet"
+    />
+    <link href="css/style.css" rel="stylesheet" />
+  </head>
+  <body data-page="dashboard">
+    <div class="app-layout">
+      <aside class="sidebar" id="sidebar"></aside>
+      <div class="app-main">
+        <header class="topbar" id="topbar"></header>
+        <main class="content">
+          <div class="demo-notice">
+            <i class="bi bi-info-circle"></i
+            ><span
+              >Demo workspace: the activity, risk scores, and alerts below are
+              realistic mock data generated in your browser.</span
+            >
+          </div>
+          <div class="page-heading">
+            <div>
+              <span class="eyebrow">SECURITY OVERVIEW</span>
+              <h1>Welcome back, Admin</h1>
+              <p>Here’s a summary of sign-in activity and security signals.</p>
+            </div>
+            <div class="heading-actions">
+              <select
+                id="dateRange"
+                class="select"
+                aria-label="Select dashboard date range"
+                style="width: auto"
+              >
+                <option value="7">Last 7 days</option>
+                <option value="30">Last 30 days</option>
+                <option value="90">Last 90 days</option></select
+              ><button class="btn btn-secondary" id="exportReport">
+                <i class="bi bi-download"></i> Export report
+              </button>
+            </div>
+          </div>
+          <section class="metric-grid" aria-label="Key statistics">
+            <article
+              class="card metric-card"
+              style="--metric: #22d3ee; --glow: rgba(34, 211, 238, 0.1)"
+            >
+              <div class="metric-top">
+                <span class="metric-label">Total login attempts</span
+                ><span class="metric-icon"><i class="bi bi-activity"></i></span>
+              </div>
+              <div class="metric-value">24,892</div>
+              <div class="metric-foot">
+                <span class="metric-change"
+                  ><i class="bi bi-arrow-up-right"></i> 12.8%</span
+                ><span>vs. previous period</span>
+              </div>
+            </article>
+            <article
+              class="card metric-card"
+              style="--metric: #10d6a0; --glow: rgba(16, 214, 160, 0.09)"
+            >
+              <div class="metric-top">
+                <span class="metric-label">Successful logins</span
+                ><span class="metric-icon"
+                  ><i class="bi bi-check2-circle"></i
+                ></span>
+              </div>
+              <div class="metric-value">23,614</div>
+              <div class="metric-foot">
+                <span class="metric-change"
+                  ><i class="bi bi-arrow-up-right"></i> 8.2%</span
+                ><span>vs. previous period</span>
+              </div>
+            </article>
+            <article
+              class="card metric-card"
+              style="--metric: #f04458; --glow: rgba(240, 68, 88, 0.08)"
+            >
+              <div class="metric-top">
+                <span class="metric-label">Blocked attempts</span
+                ><span class="metric-icon"><i class="bi bi-shield-x"></i></span>
+              </div>
+              <div class="metric-value">186</div>
+              <div class="metric-foot">
+                <span class="metric-change down"
+                  ><i class="bi bi-arrow-down-right"></i> 3.4%</span
+                ><span>vs. previous period</span>
+              </div>
+            </article>
+            <article
+              class="card metric-card"
+              style="--metric: #fbbf24; --glow: rgba(251, 191, 36, 0.08)"
+            >
+              <div class="metric-top">
+                <span class="metric-label">Open fraud alerts</span
+                ><span class="metric-icon"
+                  ><i class="bi bi-exclamation-triangle"></i
+                ></span>
+              </div>
+              <div class="metric-value" id="openAlertMetric">3</div>
+              <div class="metric-foot">
+                <span class="metric-change down">Needs attention</span
+                ><a class="table-action" href="fraud-alerts.html"
+                  >Review <i class="bi bi-arrow-right"></i
+                ></a>
+              </div>
+            </article>
+          </section>
+          <section class="dashboard-grid">
+            <article class="card chart-card">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Login activity</h2>
+                  <p>Successful and blocked attempts over time</p>
+                </div>
+                <span class="role-pill" id="chartRangeLabel">Last 7 days</span>
+              </div>
+              <div class="chart-wrap">
+                <canvas
+                  id="activityChart"
+                  aria-label="Login activity line chart"
+                ></canvas>
+                <div
+                  class="chart-fallback"
+                  id="activityFallback"
+                  aria-hidden="true"
+                >
+                  <i class="bar" data-label="Mon" style="height: 35%"></i
+                  ><i class="bar" data-label="Tue" style="height: 57%"></i
+                  ><i class="bar" data-label="Wed" style="height: 48%"></i
+                  ><i class="bar" data-label="Thu" style="height: 72%"></i
+                  ><i class="bar" data-label="Fri" style="height: 61%"></i
+                  ><i class="bar" data-label="Sat" style="height: 84%"></i
+                  ><i class="bar" data-label="Sun" style="height: 69%"></i>
+                </div>
+              </div>
+            </article>
+            <article class="card chart-card">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Risk distribution</h2>
+                  <p>Signals grouped by demo risk level</p>
+                </div>
+                <button
+                  class="action-menu"
+                  data-demo-toast="Risk distribution is based on simulated demo records."
+                  aria-label="Risk distribution information"
+                >
+                  <i class="bi bi-three-dots"></i>
+                </button>
+              </div>
+              <div class="risk-wrap">
+                <div class="risk-donut" id="riskDonut">
+                  <div class="risk-center">
+                    <strong>24.9k</strong><span>events scanned</span>
+                  </div>
+                </div>
+                <div class="legend">
+                  <div class="legend-item">
+                    <span class="legend-dot" style="background: #10d6a0"></span
+                    >Low <strong>72%</strong>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot" style="background: #fbbf24"></span
+                    >Medium <strong>19%</strong>
+                  </div>
+                  <div class="legend-item">
+                    <span class="legend-dot" style="background: #f04458"></span
+                    >High <strong>9%</strong>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </section>
+          <section class="data-row">
+            <article class="card table-card">
+              <div
+                class="card-header"
+                style="padding: 19px 19px 0; margin-bottom: 10px"
+              >
+                <div>
+                  <h2 class="card-title">Recent login activity</h2>
+                  <p>Most recent account events</p>
+                </div>
+                <a class="table-action" href="login-activities.html"
+                  >View all <i class="bi bi-arrow-right"></i
+                ></a>
+              </div>
+              <div class="table-scroll">
+                <table>
+                  <thead>
+                    <tr>
+                      <th>User</th>
+                      <th>Location</th>
+                      <th>Time</th>
+                      <th>Status</th>
+                      <th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="recentLogins"></tbody>
+                </table>
+              </div>
+            </article>
+            <article class="card section-card">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Recent fraud alerts</h2>
+                  <p>Signals that may need a closer look</p>
+                </div>
+                <a class="table-action" href="fraud-alerts.html">See all</a>
+              </div>
+              <div class="alert-list" id="recentAlerts"></div>
+            </article>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"
+      defer
+    ></script>
+    <script src="js/data.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/dashboard.js" defer></script>
+  </body>
+</html>
