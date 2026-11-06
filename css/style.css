@@ -605,6 +605,7 @@ h3 {
 }
 
 .card-title {
+    color: #ffffff;
     font-size:.98rem;
     font-weight:700;
     margin:0
@@ -659,6 +660,7 @@ h3 {
 }
 
 .metric-value {
+    color: white;
     font:700 1.72rem 'Manrope',sans-serif;
     letter-spacing:-.06em;
     margin:12px 0 5px
@@ -762,6 +764,7 @@ h3 {
 }
 
 .risk-center {
+    color: #ffffff;
     position:relative;
     text-align:center
 }
@@ -971,6 +974,7 @@ tbody tr:hover {
 }
 
 .alert-copy strong {
+    color: rgba(255, 255, 255, 0.84);
     font-size:.79rem;
     display:block
 }
@@ -1064,6 +1068,7 @@ tbody tr:hover {
 }
 
 .alert-card h3 {
+    color: rgba(24, 219, 219, 0.84);
     margin:1px 0 3px;
     font-size:.95rem
 }
@@ -1168,6 +1173,7 @@ tbody tr:hover {
 }
 
 .toggle-row {
+    color: #FFFFFF;
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -1305,6 +1311,7 @@ tbody tr:hover {
 }
 
 .score-ring-content {
+    color: white;
     position:relative;
     text-align:center
 }
@@ -1321,6 +1328,7 @@ tbody tr:hover {
 }
 
 .risk-factor {
+    color: #ffffff;
     display:flex;
     gap:10px;
     align-items:flex-start;
@@ -1361,6 +1369,7 @@ tbody tr:hover {
 }
 
 .timeline-item {
+    color: #ffffff;
     display:grid;
     grid-template-columns:22px 1fr;
     gap:11px;
@@ -1632,6 +1641,7 @@ tbody tr:hover {
 }
 
 .preview-metrics {
+    color: #ffffff;
     display:grid;
     grid-template-columns:repeat(3,1fr);
     gap:9px
